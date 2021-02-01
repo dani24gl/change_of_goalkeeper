@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, View } from 'react-native';
 
-const StartStopButton = () => {
-  const [isStarted, setIsStarted] = useState(false);
-  let title = isStarted ? 'Detener' : 'Comenzar';
-
-  const buttonHandler = () => {
-    setIsStarted(!isStarted);
-  }
+const StartStopButton = (props) => {
+  let title = props.isStarted ? 'Detener' : 'Comenzar';
+  let buttonColor = props.isStarted ? 'gray' : '';
 
   return (
     <View>
-      <Button title={title} onPress={buttonHandler} />
+      <Button title={title} onPress={props.buttonClicked} color={buttonColor} />
     </View>
   );
 }
