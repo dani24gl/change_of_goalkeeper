@@ -6,7 +6,10 @@ const screen_width = Dimensions.get('window').width;
 
 const MinutesSection = (props) => {
   const [currentValue, setCurrentValue] = useState('6');
-  const pickerHandler = (itemValue) => setCurrentValue(itemValue);
+  const pickerHandler = (itemValue) => {
+    setCurrentValue(itemValue);
+    props.changeDuration(itemValue * 60);
+  }
 
   return (
     <View>
@@ -17,8 +20,8 @@ const MinutesSection = (props) => {
         onValueChange={pickerHandler}
         enabled={!props.isStarted}
         >
-        <Picker.Item label="5" value="5" />
-        <Picker.Item label="6" value="6" />
+        <Picker.Item label='5' value='5' />
+        <Picker.Item label='6' value='6' />
       </Picker>
     </View>
   );

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Animated, Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import CountdownStyles from '../styles/CountdownStyles';
 
-const children = (remainingTime) => {
+const displayTime = (remainingTime) => {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
   const secondsWith2Digits = `0${seconds}`.slice(-2)
@@ -10,11 +11,15 @@ const children = (remainingTime) => {
   return `${minutes}:${secondsWith2Digits}`;
 }
 
-const CountdownSection = () => (
-  <View style={{ flex: 0.7, justifyContent: "center", alignItems: "center" }}>
+const restartTimer = () => [true, 0];
+
+const CountdownSection = (props) => (
+  <View style={CountdownStyles.container}>
     <CountdownCircleTimer
-      isPlaying
-      duration={60 * 50}
+      isPlaying={props.isStarted}
+      key={props.countdownKey}
+      duration={props.duration}
+      onComplete={restartTimer}
       colors={[
         ['#004777', 0.4],
         ['#F7B801', 0.4],
@@ -23,7 +28,7 @@ const CountdownSection = () => (
     >
       {({ remainingTime, animatedColor }) => (
         <Animated.Text style={{ color: animatedColor }}>
-          <Text>{children(remainingTime)}</Text>
+          <Text style={{ fontSize: 35 }}>{displayTime(remainingTime)}</Text>
         </Animated.Text>
       )}
     </CountdownCircleTimer>
