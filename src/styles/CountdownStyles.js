@@ -4,7 +4,8 @@ const countdownStyles = StyleSheet.create({
   container: {
     flex: 0.7,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 20
   }
 });
 

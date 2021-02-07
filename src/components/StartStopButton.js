@@ -6,7 +6,7 @@ const StartStopButton = (props) => {
   let buttonColor = props.isStarted ? 'gray' : '';
 
   return (
-    <View>
+    <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
       <Button title={title} onPress={props.buttonClicked} color={buttonColor} />
     </View>
   );
